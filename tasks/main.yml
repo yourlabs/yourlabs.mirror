@@ -8,6 +8,11 @@
     path: '{{ home }}'
     mode: '0700'
 
+- name: Upload {{ home }}/nginx.conf
+  template:
+    src: nginx.conf
+    dest: '{{ home }}/nginx.conf'
+
 - name: Upload {{ home }}/docker-compose.yml
   template:
     src: docker-compose.yml

@@ -7,9 +7,6 @@ remember:
 - name: home
   question: Choose the home directory for this mirror
 
-- name: source
-  question: What URL to mirror from ?
-
 - name: url
   question: |
     What is full url to expose this mirror ?
