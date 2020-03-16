@@ -1,0 +1,21 @@
+---
+home: /home/mirror
+
+remember_fact: mirror_j2((home.split('/')[-1]))
+
+remember:
+- name: home
+  question: Choose the home directory for this mirror
+
+- name: source
+  question: What URL to mirror from ?
+
+- name: url
+  question: |
+    What is full url to expose this mirror ?
+    ie. https://arch.example.com
+  default: https://{{ home.split('/')[-1] }}.{{ ansible_facts.ansible_local.get('yourlabs_fqdn', {}).get('fqdn', inventory_hostname) }}
+  regexp: 'https?://[\w.]+'
+
+- name: template
+  question: What template to use ?

@@ -1,0 +1,11 @@
+---
+
+- name: Stop {{ home }}/docker-compose.yml
+  docker_compose:
+    project_src: '{{ home }}'
+    state: absent
+
+- name: Remove {{ home }}
+  file:
+    path: '{{ home }}'
+    state: absent

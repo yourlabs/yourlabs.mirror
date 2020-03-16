@@ -1,0 +1,31 @@
+---
+
+- include_role: name=yourlabs.remember
+
+- name: Home directory
+  file:
+    state: directory
+    path: '{{ home }}'
+    mode: '0700'
+
+- name: Upload {{ home }}/docker-compose.yml
+  template:
+    src: docker-compose.yml
+    dest: '{{ home }}/docker-compose.yml'
+
+- name: Upload {{ template }} to {{ home }}/mirror.sh
+  template:
+    src: '{{ template }}'
+    dest: '{{ home }}/mirror.sh'
+    mode: 0755
+
+- name: Create web network
+  docker_network:
+    name: web
+
+- name: Start {{ home }}/docker-compose.yml
+  docker_compose:
+    project_src: '{{ home }}'
+    restarted: yes
+    pull: yes
+    recreate: always

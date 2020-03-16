@@ -1,0 +1,13 @@
+---
+galaxy_info:
+  author: James Pic
+  role_name: mirror
+  description: Role to setup linux package mirrors
+  company: YourLabs
+  issue_tracker_url: https://yourlabs.io/oss/yourlabs.mirror/issues
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: GenericLinux
+    versions:
+    - all
