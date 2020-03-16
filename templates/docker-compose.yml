@@ -6,13 +6,13 @@ networks:
 
 services:
   nginx:
-    image: nginx
+    image: nginx:alpine
     networks:
     - web
     ports:
     - 80
     volumes:
-    - ./www:/var/lib/www:ro
+    - ./www:/usr/share/nginx/html:ro
     labels:
     - traefik.http.routers.mirror.rule=Host(`{{ url.split("/")[2] }}`)
 
