@@ -6,6 +6,7 @@ networks:
 
 services:
   nginx:
+    restart: always
     image: nginx:alpine
     networks:
     - web
@@ -22,6 +23,7 @@ services:
 {% endif %}
 
   mirror:
+    restart: always
     image: alpine
     command: sh -c "./mirror.sh; while ./mirror.sh; do sleep 3600; done"
     working_dir: /srv
