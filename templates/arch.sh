@@ -13,12 +13,21 @@ if tty -s; then
   RSYNC_OPTS="$RSYNC_OPTS -v"
 fi
 
+cat > ~/exclude.txt <<EOF
+iso
+other
+archlinux
+*-testing
+*-staging
+*-unstable
+EOF
+
 # first get new package files (the pool) and don't delete anything
 /usr/bin/rsync $RSYNC_OPTS $REPO/pool/ $DEST/pool/
 
 # … and only then get the database, links and the structure
 /usr/bin/rsync $RSYNC_OPTS --delete-after --delay-updates $REPO $DEST \
-        --exclude iso/ --exclude other/ --exclude archlinux --exclude blackarch/
+        --exclude-from ~/exclude.txt
 
 # --delete-before so that it frees disk space earlier
 /usr/bin/rsync $RSYNC_OPTS --delete-before $REPO/iso/ $DEST/iso/ --exclude archboot
