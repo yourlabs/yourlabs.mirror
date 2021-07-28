@@ -1,5 +1,7 @@
 #!/bin/sh -ex
 
+/bin/echo "start: $(date)"
+
 type rsync || { apk update; apk add rsync; }
 
 REPO=rsync://archlinux.polymorf.fr/archlinux/
@@ -31,3 +33,6 @@ EOF
 
 # --delete-before so that it frees disk space earlier
 /usr/bin/rsync $RSYNC_OPTS --delete-before $REPO/iso/ $DEST/iso/ --exclude archboot
+
+/bin/echo "finish: $(date)"
+/bin/echo "###############################"

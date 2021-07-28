@@ -1,6 +1,6 @@
 #!/bin/sh -ex
 
-/bin/echo "start: $(date)"
+echo "start: $(date)"
 type rsync || { apk update; apk add rsync; }
 
 src=rsync://rsync.alpinelinux.org/alpine/
@@ -34,5 +34,5 @@ EOF
     --delete-after \
     "$src" "$dest"
 
-/bin/echo "finish: $(date)"
-/bin/echo "###############################"
+echo "finish: $(date)"
+echo "###############################"
